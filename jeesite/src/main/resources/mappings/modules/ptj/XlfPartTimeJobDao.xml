@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.ptj.dao.XlfPartTimeJobDao">
+    
+	  <resultMap id="BaseResultMap" type="com.thinkgem.jeesite.modules.ptj.entity.XlfPartTimeJob">
+        <id  column="job_id" property="jobId" jdbcType="INTEGER"/>
+        <result column="job_name" property="jobName" jdbcType="VARCHAR"/>
+        <result column="limit_number" property="limitNumber" jdbcType="INTEGER"/>
+        <result column="sex_demand" property="sexDemand" jdbcType="VARCHAR"/>
+        <result column="job_type_id" property="jobTypeId" jdbcType="INTEGER"/>
+        <result column="wage" property="wage" jdbcType="DECIMAL"/>
+        <result column="wage_type" property="wageType" jdbcType="VARCHAR"/>
+        <result column="work_street" property="workStreet" jdbcType="VARCHAR"/>
+        <result column="calculate_money_type" property="calculateMoneyType" jdbcType="VARCHAR"/>
+        <result column="calculate_money_date" property="calculateMoneyDate" jdbcType="VARCHAR"/>
+        <result column="time_type" property="workStreet" jdbcType="VARCHAR"/>
+        <result column="release_time" property="releaseTime" jdbcType="TIMESTAMP"/>
+        <result column="end_work_date" property="endWorkDate" jdbcType="TIMESTAMP"/>
+        <result column="start_work_date" property="startWorkDate" jdbcType="TIMESTAMP"/>
+        <result column="job_content" property="jobContent" jdbcType="VARCHAR"/>
+        <result column="audit_status" property="auditStatus" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="area_id" property="areaId" jdbcType="INTEGER"/>
+        <result column="del_flag" property="delFlag" jdbcType="VARCHAR"/>
+        <result column="work_time" property="workTime" jdbcType="VARCHAR"/>
+        <result column="latitude" property="latitude" jdbcType="DOUBLE"/>
+        <result column="longitude" property="longitude" jdbcType="DOUBLE"/>
+    </resultMap>
+	
+    
+	<select id="get" resultType="XlfPartTimeJob">
+		SELECT 
+			*
+		FROM xlf_part_time_job a
+		WHERE job_id = #{jobId}
+	</select>
+	
+	<select id="findList" resultType="XlfPartTimeJob">
+		SELECT  p.*,u.user_name as userName,u.user_company as userCompany,
+		t.job_type as jobType
+		FROM xlf_part_time_job p
+		left join  xlf_user u
+		on p.user_id =u.id 
+		left join xlf_ptj_type t
+		on p.job_type_id = t.id
+		<where>
+			<if test="jobName != null and jobName != ''">
+				job_name like '%${jobName}%'
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="XlfPartTimeJob">
+		SELECT *
+		FROM xlf_part_time_job a
+		<where>
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO xlf_part_time_job(
+			job_id,
+			job_name,
+			limit_number,
+			sex_demand,
+			job_type_id,
+			wage,
+			wage_type,
+			work_street,
+			calculate_money_type,
+			calculate_money_date,
+			time_type,
+			release_time,
+			end_work_date,
+			start_work_date,
+			job_content,
+			audit_status,
+			user_id,
+			area_id,
+			del_flag,
+			work_time,
+			longitude,
+			latitude
+		) VALUES (
+			#{jobId},
+			#{jobName},
+			#{limitNumber},
+			#{sexDemand},
+			#{jobTypeId},
+			#{wage},
+			#{wageType},
+			#{workStreet},
+			#{calculateMoneyType},
+			#{calculateMoneyDate},
+			#{timeType},
+			#{releaseTime},
+			#{endWorkDate},
+			#{startWorkDate},
+			#{jobContent},
+			#{auditStatus},
+			#{user.id},
+			#{area.id},
+			#{delFlag},
+			#{workTime},
+			#{longitude},
+			#{latitude}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE xlf_part_time_job SET 	
+			job_id = #{jobId},
+			job_name = #{jobName},
+			limit_number = #{limitNumber},
+			sex_demand = #{sexDemand},
+			job_type_id = #{jobTypeId},
+			wage = #{wage},
+			wage_type = #{wageType},
+			work_street = #{workStreet},
+			calculate_money_type = #{calculateMoneyType},
+			calculate_money_date = #{calculateMoneyDate},
+			time_type = #{timeType},
+			release_time = #{releaseTime},
+			end_work_date = #{endWorkDate},
+			start_work_date = #{startWorkDate},
+			job_content = #{jobContent},
+			audit_status = #{auditStatus},
+			user_id = #{user.id},
+			area_id = #{area.id},
+			work_time = #{workTime},
+			longitude = #{longitude},
+			latitude = #{latitude}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		delete from xlf_part_time_job  
+		WHERE job_id = #{jobId}
+	</update>
+	
+</mapper>
