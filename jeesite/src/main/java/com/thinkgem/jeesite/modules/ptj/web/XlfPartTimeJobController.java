@@ -3,6 +3,7 @@
  */
 package com.thinkgem.jeesite.modules.ptj.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +21,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
+import com.thinkgem.jeesite.common.utils.Encodes;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.area.entity.XlfArea;
 import com.thinkgem.jeesite.modules.area.service.XlfAreaService;
 import com.thinkgem.jeesite.modules.ptj.entity.XlfPartTimeJob;
+import com.thinkgem.jeesite.modules.ptj.entity.XlfPtjType;
 import com.thinkgem.jeesite.modules.ptj.service.XlfPartTimeJobService;
+import com.thinkgem.jeesite.modules.ptj.service.XlfPtjTypeService;
 
 /**
  * 兼职信息Controller
@@ -40,6 +44,9 @@ public class XlfPartTimeJobController extends BaseController {
 	
 	@Autowired
 	private XlfAreaService xlfAreaService;
+	
+	@Autowired 
+	private XlfPtjTypeService typeService;
 	
 	@ModelAttribute
 	public XlfPartTimeJob get(@RequestParam(required=false) String id) {
@@ -69,10 +76,19 @@ public class XlfPartTimeJobController extends BaseController {
 		model.addAttribute("page", page);
 		return "modules/ptj/xlfPartTimeJobList";
 	}
-
 	@RequiresPermissions("ptj:xlfPartTimeJob:view")
 	@RequestMapping(value = "form")
 	public String form(XlfPartTimeJob xlfPartTimeJob, Model model) {
+		List<XlfPtjType>  typeList = new ArrayList<XlfPtjType>();
+		if(StringUtils.isNotBlank(xlfPartTimeJob.getJobId())) {
+			xlfPartTimeJob.setId(xlfPartTimeJob.getJobId());
+			xlfPartTimeJob = xlfPartTimeJobService.get(xlfPartTimeJob.getJobId());
+			XlfPtjType type=typeService.get(xlfPartTimeJob.getJobTypeId());
+			typeList.add(type);
+		}else {
+			 typeList=typeService.findList(new XlfPtjType());
+		}
+		model.addAttribute("typeList",typeList);
 		model.addAttribute("xlfPartTimeJob", xlfPartTimeJob);
 		return "modules/ptj/xlfPartTimeJobForm";
 	}

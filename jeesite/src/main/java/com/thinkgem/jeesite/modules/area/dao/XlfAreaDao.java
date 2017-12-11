@@ -15,4 +15,6 @@ import com.thinkgem.jeesite.modules.area.entity.XlfArea;
 @MyBatisDao
 public interface XlfAreaDao extends CrudDao<XlfArea> {
 	public int updateByCity(XlfArea xlfArea);
+	
+	public XlfArea selectByArea(XlfArea xlfArea);
 }

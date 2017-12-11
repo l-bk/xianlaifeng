@@ -15,7 +15,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 public class XlfArea extends DataEntity<XlfArea> {
 	
 	private static final long serialVersionUID = 1L;
-	private String areaId;
+	private Integer areaId;
 	private String province;		// 省
 	private String city;		// 市
 	private String district;		// 区
@@ -32,11 +32,11 @@ public class XlfArea extends DataEntity<XlfArea> {
 
 	
 	
-	public String getAreaId() {
+	public Integer getAreaId() {
 		return areaId;
 	}
 
-	public void setAreaId(String areaId) {
+	public void setAreaId(Integer areaId) {
 		this.areaId = areaId;
 	}
 

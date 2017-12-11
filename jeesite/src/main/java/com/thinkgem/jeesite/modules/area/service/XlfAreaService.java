@@ -44,8 +44,8 @@ public class XlfAreaService extends CrudService<XlfAreaDao, XlfArea> {
 	
 	@Transactional(readOnly = false)
 	public void save(XlfArea xlfArea) {
-		if(StringUtils.isNotEmpty(xlfArea.getAreaId())) {
-			xlfArea.setId(xlfArea.getAreaId());
+		if(xlfArea.getAreaId() != null && !"".equals(xlfArea.getAreaId()) ) {
+			xlfArea.setId(String.valueOf(xlfArea.getAreaId()));
 		}
 		if(StringUtils.isNotEmpty(xlfArea.getCityFirst())) {
 			xlfArea.setCityFirst(xlfArea.getCityFirst().toUpperCase());

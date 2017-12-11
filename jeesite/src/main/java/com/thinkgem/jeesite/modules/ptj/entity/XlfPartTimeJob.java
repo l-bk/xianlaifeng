@@ -106,7 +106,6 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		this.userId = userId;
 	}
 
-	@Length(min=1, max=64, message="唯一id长度必须介于 1 和 64 之间")
 	public String getJobId() {
 		return jobId;
 	}
@@ -115,7 +114,6 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		this.jobId = jobId;
 	}
 	
-	@Length(min=0, max=256, message="兼职名称长度必须介于 0 和 256 之间")
 	public String getJobName() {
 		return jobName;
 	}
@@ -124,7 +122,6 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		this.jobName = jobName;
 	}
 	
-	@Length(min=0, max=64, message="兼职限定人数长度必须介于 0 和 64 之间")
 	public String getLimitNumber() {
 		return limitNumber;
 	}
@@ -133,7 +130,6 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		this.limitNumber = limitNumber;
 	}
 	
-	@Length(min=0, max=3, message="性别要求 1：男 ，2：女 3：不限制长度必须介于 0 和 3 之间")
 	public String getSexDemand() {
 		return sexDemand;
 	}
@@ -142,7 +138,6 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		this.sexDemand = sexDemand;
 	}
 	
-	@Length(min=0, max=64, message="兼职类型id，关联兼职类型表长度必须介于 0 和 64 之间")
 	public String getJobTypeId() {
 		return jobTypeId;
 	}
@@ -159,7 +154,6 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		this.wage = wage;
 	}
 	
-	@Length(min=0, max=32, message="工资单位长度必须介于 0 和 32 之间")
 	public String getWageType() {
 		return wageType;
 	}
@@ -168,7 +162,6 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		this.wageType = wageType;
 	}
 	
-	@Length(min=0, max=256, message="工作街道长度必须介于 0 和 256 之间")
 	public String getWorkStreet() {
 		return workStreet;
 	}
@@ -177,7 +170,6 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		this.workStreet = workStreet;
 	}
 	
-	@Length(min=0, max=10, message="结款方式 1：日结 ，2：周结，3：月结长度必须介于 0 和 10 之间")
 	public String getCalculateMoneyType() {
 		return calculateMoneyType;
 	}
@@ -186,7 +178,6 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		this.calculateMoneyType = calculateMoneyType;
 	}
 	
-	@Length(min=0, max=10, message="结款日期长度必须介于 0 和 10 之间")
 	public String getCalculateMoneyDate() {
 		return calculateMoneyDate;
 	}
@@ -195,7 +186,6 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		this.calculateMoneyDate = calculateMoneyDate;
 	}
 	
-	@Length(min=0, max=3, message="时间类型 1:短期不包含周末 ，2：短期包含周末，3：长期长度必须介于 0 和 3 之间")
 	public String getTimeType() {
 		return timeType;
 	}
@@ -213,7 +203,6 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		this.releaseTime = releaseTime;
 	}
 	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	public Date getEndWorkDate() {
 		return endWorkDate;
 	}
@@ -222,7 +211,6 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		this.endWorkDate = endWorkDate;
 	}
 	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	public Date getStartWorkDate() {
 		return startWorkDate;
 	}
@@ -231,7 +219,6 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		this.startWorkDate = startWorkDate;
 	}
 	
-	@Length(min=0, max=1024, message="工作内容长度必须介于 0 和 1024 之间")
 	public String getJobContent() {
 		return jobContent;
 	}

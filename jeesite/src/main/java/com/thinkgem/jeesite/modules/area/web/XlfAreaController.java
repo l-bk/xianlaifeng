@@ -57,8 +57,8 @@ public class XlfAreaController extends BaseController {
 	@RequiresPermissions("area:xlfArea:view")
 	@RequestMapping(value = "form")
 	public String form(XlfArea xlfArea, Model model) {
-		if(StringUtils.isNotEmpty(xlfArea.getAreaId())) {
-			xlfArea=xlfAreaService.get(xlfArea.getAreaId());
+		if(xlfArea.getAreaId() != null) {
+			xlfArea=xlfAreaService.get(String.valueOf(xlfArea.getAreaId()));
 		}
 		model.addAttribute("xlfArea", xlfArea);
 		return "modules/area/xlfAreaForm";
