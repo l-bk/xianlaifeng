@@ -19,6 +19,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 public class XlfActivity extends DataEntity<XlfActivity> {
 	
 	private static final long serialVersionUID = 1L;
+	private Integer actId;
 	private String name;		// 活动名称
 	private String details;		// 活动详情
 	private String ifSchool;		// 是否校园活动
@@ -49,6 +50,16 @@ public class XlfActivity extends DataEntity<XlfActivity> {
 
 	public XlfActivity(String id){
 		super(id);
+	}
+	
+	
+
+	public Integer getActId() {
+		return actId;
+	}
+
+	public void setActId(Integer actId) {
+		this.actId = actId;
 	}
 
 	public String getUserName() {

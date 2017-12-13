@@ -54,7 +54,12 @@ public class XlfActivityController extends BaseController {
 		Page<XlfActivity> page = xlfActivityService.findPage(new Page<XlfActivity>(request, response), xlfActivity); 
 		List<XlfActivity> lite= page.getList();
 		for(XlfActivity act:lite) {
-			act.setAddress(act.getProvince() + act.getCity()+act.getDistrict() + act.getLocation()+act.getDoor());
+			String province = act.getProvince() == null ? "":act.getProvince();
+			String city = act.getCity() == null ? "":act.getCity();
+			String district = act.getDistrict() == null ? "":act.getDistrict();
+			String location=act.getLocation()== null ?"":act.getLocation();
+			String door=act.getDoor() == null ?"":act.getDoor();
+			act.setAddress(province + city+district +location +door);
 			
 		}
 		model.addAttribute("page", page);
@@ -64,8 +69,8 @@ public class XlfActivityController extends BaseController {
 	@RequiresPermissions("activity:xlfActivity:view")
 	@RequestMapping(value = "form")
 	public String form(XlfActivity xlfActivity, Model model) {
-		if(StringUtils.isNotBlank(xlfActivity.getId())) {
-			xlfActivity = xlfActivityService.get(xlfActivity.getId());
+		if(xlfActivity != null) {
+			xlfActivity = xlfActivityService.selectByActId(xlfActivity.getActId());
 		}
 		model.addAttribute("xlfActivity", xlfActivity);
 		return "modules/activity/xlfActivityForm";

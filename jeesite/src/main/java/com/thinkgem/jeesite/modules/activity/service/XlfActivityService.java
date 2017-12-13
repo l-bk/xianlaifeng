@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.activity.service;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,9 @@ import com.thinkgem.jeesite.modules.activity.dao.XlfActivityDao;
 @Transactional(readOnly = true)
 public class XlfActivityService extends CrudService<XlfActivityDao, XlfActivity> {
 
+	@Autowired
+	private XlfActivityDao activityDao;
+	
 	public XlfActivity get(String id) {
 		return super.get(id);
 	}
@@ -39,6 +43,9 @@ public class XlfActivityService extends CrudService<XlfActivityDao, XlfActivity>
 	
 	@Transactional(readOnly = false)
 	public void save(XlfActivity xlfActivity) {
+		if(xlfActivity != null){
+			xlfActivity.setId(String.valueOf(xlfActivity.getActId()));
+		}
 		xlfActivity.setCreateTime(new Date());
 		xlfActivity.setStatus("1");
 		xlfActivity.setCreateUser(10001);
@@ -51,6 +58,11 @@ public class XlfActivityService extends CrudService<XlfActivityDao, XlfActivity>
 	@Transactional(readOnly = false)
 	public void delete(XlfActivity xlfActivity) {
 		super.delete(xlfActivity);
+	}
+	
+	
+	public XlfActivity selectByActId(Integer id) {
+		return activityDao.selectByActId(id);
 	}
 	
 }

@@ -14,5 +14,5 @@ import com.thinkgem.jeesite.modules.activity.entity.XlfActivity;
  */
 @MyBatisDao
 public interface XlfActivityDao extends CrudDao<XlfActivity> {
-	
+	XlfActivity selectByActId(Integer id);
 }

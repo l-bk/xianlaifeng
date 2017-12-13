@@ -63,8 +63,8 @@
 					</c:if>
 				</td>
 				<shiro:hasPermission name="activity:xlfActivity:edit"><td>
-    				<a href="${ctx}/activity/xlfActivity/form?id=${xlfActivity.id}">修改</a>
-					<a href="${ctx}/activity/xlfActivity/delete?id=${xlfActivity.id}" onclick="return confirmx('确认要删除该活动信息管理吗？', this.href)">删除</a>
+    				<a href="${ctx}/activity/xlfActivity/form?actId=${xlfActivity.actId}">修改</a>
+					<a href="${ctx}/activity/xlfActivity/delete?actId=${xlfActivity.actId}" onclick="return confirmx('确认要删除该活动信息管理吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

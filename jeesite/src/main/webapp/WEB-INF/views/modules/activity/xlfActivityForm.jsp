@@ -86,7 +86,7 @@
 	<form:form id="inputForm" modelAttribute="xlfActivity"
 		action="${ctx}/activity/xlfActivity/save" method="post"
 		class="form-horizontal">
-		<form:hidden path="id" />
+		<form:hidden path="actId" />
 		<sys:message content="${message}" />
 		<div class="control-group">
 			<label class="control-label">活动名称：</label>
