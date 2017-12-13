@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.activity.dao.XlfActivityDao">
+	<resultMap id="BaseResultMap"
+		type="com.thinkgem.jeesite.modules.activity.entity.XlfActivity">
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="activityName"  property="name"  jdbcType="VARCHAR"/>
+		<result column="activityDetails"  property="details"  jdbcType="VARCHAR"/>
+		<result column="activityIfSchool"  property="ifSchool"  jdbcType="VARCHAR"/>
+		<result column="activityPic"  property="pic"  jdbcType="VARCHAR"/>
+		<result column="activityProvince"  property="province"  jdbcType="VARCHAR"/>
+		<result column="activityCity"  property="city"  jdbcType="VARCHAR"/>
+		<result column="activityDistrict"  property="district"  jdbcType="VARCHAR"/>
+		<result column="activityLocation"  property="location"  jdbcType="VARCHAR"/>
+		<result column="activityLatitude"  property="latitude"  jdbcType="VARCHAR"/>
+		<result column="activityLongitude"  property="longitude"  jdbcType="VARCHAR"/>
+		<result column="activityPerson"  property="person"  jdbcType="VARCHAR"/>
+		<result column="activityStartTime"  property="startTime"  jdbcType="TIMESTAMP"/>
+		<result column="activityEndTime"  property="endTime"  jdbcType="TIMESTAMP"/>
+		<result column="activityCreateTime"  property="createTime"  jdbcType="TIMESTAMP"/>
+		<result column="activityCreateUser"  property="createUser"  jdbcType="INTEGER"/>
+		<result column="activityStatus"  property="status"  jdbcType="VARCHAR"/>
+		<result column="activityDoor" property="door" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		activityName,activityDetails,activityIfSchool,activityPic,activityProvince,
+		activityCity,activityDistrict,activityLocation,activityLatitude,
+		activityLongitude,activityPerson,activityStartTime,activityEndTime,
+		activityCreateTime,activityCreateUser,activityStatus,activityDoor
+	</sql>
+
+	<select id="get" resultType="com.thinkgem.jeesite.modules.activity.entity.XlfActivity">
+		SELECT 
+		<include refid="Base_Column_List"/>
+		FROM xlf_activity 
+		WHERE id = #{id}
+	</select>
+
+	<select id="findList" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List"/>	
+		,u.user_name AS userName
+		FROM xlf_activity a 
+		left join xlf_user u
+		on a.activityCreateUser = u.id
+		<where>
+
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="findAllList" resultType="XlfActivity">
+		SELECT 
+		<include refid="Base_Column_List"/>
+		FROM xlf_activity a
+		<where>
+
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+
+	<insert id="insert">
+		INSERT INTO xlf_activity
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				activityName,
+			</if>
+			<if test="details != null">
+				activityDetails,
+			</if>
+			<if test="ifSchool != null">
+				activityIfSchool,
+			</if>
+			<if test="pic != null">
+				activityPic,
+			</if>
+			<if test="province != null">
+				activityProvince,
+			</if>
+			<if test="city != null">
+				activityCity,
+			</if>
+			<if test="district != null">
+				activityDistrict,
+			</if>
+			<if test="location != null">
+				activityLocation,
+			</if>
+			<if test="latitude != null">
+				activityLatitude,
+			</if>
+			<if test="longitude != null">
+				activityLongitude,
+			</if>
+			<if test="person != null">
+				activityPerson,
+			</if>
+			<if test="startTime != null">
+				activityStartTime,
+			</if>
+			<if test="endTime != null">
+				activityEndTime,
+			</if>
+			<if test="createTime != null">
+				activityCreateTime,
+			</if>
+			<if test="createUser != null">
+				activityCreateUser,
+			</if>
+			<if test="status != null">
+				activityStatus,
+			</if>
+			<if test="door != null">
+				activityDoor,
+			</if>
+		</trim>
+		<trim prefix="value(" suffix=")"  suffixOverrides=",">
+			<if test="name != null">
+				#{name},
+			</if>
+			<if test="details != null">
+				#{details},
+			</if>
+			<if test="ifSchool != null">
+				#{ifSchool},
+			</if>
+			<if test="pic != null">
+				#{pic},
+			</if>
+			<if test="province != null">
+				#{province},
+			</if>
+			<if test="city != null">
+				#{city},
+			</if>
+			<if test="district != null">
+				#{district},
+			</if>
+			<if test="location != null">
+				#{location},
+			</if>
+			<if test="latitude != null">
+				#{latitude},
+			</if>
+			<if test="longitude != null">
+				#{longitude},
+			</if>
+			<if test="person != null">
+				#{person},
+			</if>
+			<if test="startTime != null">
+				#{startTime},
+			</if>
+			<if test="endTime != null">
+				#{endTime},
+			</if>
+			<if test="createTime != null">
+				#{createTime},
+			</if>
+			<if test="createUser != null">
+				#{createUser},
+			</if>
+			<if test="status != null">
+				#{status},
+			</if>
+			<if test="door != null">
+				#{door},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update">
+		UPDATE xlf_activity
+		<set>
+			<if test="name != null">
+				activityName = #{name} ,
+			</if>
+			<if test="details != null">
+				activityDetails = #{details},
+			</if>
+			<if test="ifSchool != null">
+				activityIfSchool = #{ifSchool},
+			</if>
+			<if test="pic != null">
+				activityPic = #{pic},
+			</if>
+			<if test="province != null">
+				activityProvince = #{province},
+			</if>
+			<if test="city != null">
+				activityCity = #{city},
+			</if>
+			<if test="district != null">
+				activityDistrict = #{district},
+			</if>
+			<if test="location != null">
+				activityLocation = #{location},
+			</if>
+			<if test="latitude != null">
+				activityLatitude = #{latitude},
+			</if>
+			<if test="longitude != null">
+				activityLongitude= #{longitude},
+			</if>
+			<if test="person != null">
+				activityPerson = #{person},
+			</if>
+			<if test="startTime != null">
+				activityStartTime = #{startTime},
+			</if>
+			<if test="endTime != null">
+				activityEndTime = #{endTime},
+			</if>
+			<if test="createTime != null">
+				activityCreateTime= #{createTime},
+			</if>
+			<if test="createUser != null">
+				activityCreateUser = #{createUser},
+			</if>
+			<if test="status != null">
+				activityStatus = #{status},
+			</if>	
+			<if test="door != null">
+				activityDoor = #{door},
+			</if>	
+		</set> 
+		WHERE id = #{id}
+	</update>
+
+	<update id="delete">
+		DELETE FROM xlf_activity
+		WHERE id = #{id}
+	</update>
+
+</mapper>

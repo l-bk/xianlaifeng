@@ -369,4 +369,11 @@ public class UserController extends BaseController {
 //			}
 //		});
 //	}
-}
+	
+	
+	@RequestMapping(value = "upload")
+	public String upload( HttpServletRequest request, HttpServletResponse response, Model model) {
+		System.out.println("------------xxx");
+		return null;
+	}
+	}

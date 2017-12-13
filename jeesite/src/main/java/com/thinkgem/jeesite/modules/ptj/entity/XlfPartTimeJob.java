@@ -181,7 +181,7 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 	public String getCalculateMoneyDate() {
 		return calculateMoneyDate;
 	}
-
+	
 	public void setCalculateMoneyDate(String calculateMoneyDate) {
 		this.calculateMoneyDate = calculateMoneyDate;
 	}
@@ -189,24 +189,24 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 	public String getTimeType() {
 		return timeType;
 	}
-
+	
+	@JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")  
 	public void setTimeType(String timeType) {
 		this.timeType = timeType;
 	}
-	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	public Date getReleaseTime() {
 		return releaseTime;
 	}
-
+	@JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")  
 	public void setReleaseTime(Date releaseTime) {
 		this.releaseTime = releaseTime;
 	}
-	
+	@JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")  
 	public Date getEndWorkDate() {
 		return endWorkDate;
 	}
-
+	@JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")  
 	public void setEndWorkDate(Date endWorkDate) {
 		this.endWorkDate = endWorkDate;
 	}
