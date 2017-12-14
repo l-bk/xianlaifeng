@@ -69,7 +69,7 @@ public class XlfActivityController extends BaseController {
 	@RequiresPermissions("activity:xlfActivity:view")
 	@RequestMapping(value = "form")
 	public String form(XlfActivity xlfActivity, Model model) {
-		if(xlfActivity != null) {
+		if(xlfActivity.getActId() != null) {
 			xlfActivity = xlfActivityService.selectByActId(xlfActivity.getActId());
 		}
 		model.addAttribute("xlfActivity", xlfActivity);

@@ -49,7 +49,7 @@ public class XlfPartTimeJobService extends CrudService<XlfPartTimeJobDao, XlfPar
 	
 	@Transactional(readOnly = false)
 	public void save(XlfPartTimeJob xlfPartTimeJob) {
-		if(xlfPartTimeJob == null) { //添加信息
+		if(xlfPartTimeJob.getJobId() == null || "".equals(xlfPartTimeJob.getJobId())) { //添加信息
 			xlfPartTimeJob.setReleaseTime(new Date());
 			xlfPartTimeJob.setAuditStatus("1");//管理员录入的东西默认审核通过
 		}

@@ -50,7 +50,10 @@
 		on p.job_type_id = t.id
 		<where>
 			<if test="jobName != null and jobName != ''">
-				job_name like '%${jobName}%'
+				p.job_name like '%${jobName}%'
+			</if>
+			<if test="userId != 0">
+				and p.user_id = #{userId}
 			</if>
 		</where>
 		<choose>

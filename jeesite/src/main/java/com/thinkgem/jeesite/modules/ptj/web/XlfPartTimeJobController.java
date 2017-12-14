@@ -66,14 +66,6 @@ public class XlfPartTimeJobController extends BaseController {
 	public String list(XlfPartTimeJob xlfPartTimeJob, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<XlfPartTimeJob> page = xlfPartTimeJobService.findPage(new Page<XlfPartTimeJob>(request, response), xlfPartTimeJob); 
 		List<XlfPartTimeJob> list=xlfPartTimeJobService.findList(xlfPartTimeJob);
-//		List<XlfPartTimeJob> list=page.getList();
-//		String str="";
-//		for(XlfPartTimeJob ptj : list){
-//			XlfArea are=xlfAreaService.get(String.valueOf(ptj.getAreaId()));
-//			str=are.getProvince()+are.getCity()+are.getDistrict();
-//			ptj.setArea(str);
-//		}
-//		page.setList(list);
 		model.addAttribute("page", page);
 		return "modules/ptj/xlfPartTimeJobList";
 	}

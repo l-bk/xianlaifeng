@@ -54,6 +54,7 @@
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
+		
 		<div class="control-group">
 			<label class="control-label">兼职限定人数：</label>
 			<div class="controls">
@@ -179,6 +180,9 @@
 					<span class="help-inline "><font color="red">*</font> </span>
 			</div>
 		</div>
+		
+	
+		
 		<div class="control-group">
 			<label class="control-label">工作时间段：</label>
 			<div class="controls">
@@ -187,6 +191,8 @@
 					<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
+		
+		
 		<div class="control-group">
 			<label class="control-label">工作内容：</label>
 			<div class="controls">
@@ -203,7 +209,19 @@
 					class="input-xlarge " />
 			</div>
 		</div> --%>
-
+		<c:if test="${xlfPartTimeJob.jobId != null }">
+			<div class="control-group">
+				<label class="control-label">审核状态：</label>
+				<div class="controls">
+					<form:radiobutton path="auditStatus" htmlEscape="false"
+						value="0" label="未审核" class="input-xlarge " />
+					<form:radiobutton path="auditStatus" htmlEscape="false"
+						value="1" label="审核通过" class="input-xlarge " />
+					<form:radiobutton path="auditStatus" htmlEscape="false"
+						value="2" label="取消" class="input-xlarge " />
+				</div>
+		</c:if>
+		
 		<div class="form-actions">
 			<shiro:hasPermission name="ptj:xlfPartTimeJob:edit">
 				<input id="btnSubmit" class="btn btn-primary" type="submit"
