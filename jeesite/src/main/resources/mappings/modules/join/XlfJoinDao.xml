@@ -33,6 +33,9 @@
 				<when test="moduleType == 2">
 					,p.job_name AS ptjName,t.job_type  AS jobType
 				</when>
+				<when test="moduleType == 1">
+					,c.activityName AS actName, c.activityPerson AS actPerson
+				</when>
 			</choose>
 		FROM xlf_join a
 		left join xlf_user u
@@ -44,10 +47,17 @@
 				left join xlf_ptj_type t
 				on p.job_type_id = t.id
 			</when>
+			<when test="moduleType ==1">
+				left join xlf_activity c
+				on a.actId = c.id
+			</when>
 		</choose>
 		<where>
 			<if test="moduleId != null">
 				a.actId = #{moduleId}
+			</if>
+			<if test="user != null">
+				and userId like '%{user}%'
 			</if>
 		</where>
 		<choose>
@@ -143,11 +153,14 @@
 	<select id ="selectCoumnApply" parameterType="com.thinkgem.jeesite.modules.join.entity.XlfJoin" resultType="int">
 		select count(id) FROM xlf_join a 
 		<where>
-			<if test="user != null">
+			<if test="moduleId != null">
 				a.actId = #{moduleId}
 			</if>
 			<if test="moduleType != null">
 				and a.methodId = #{moduleType}
+			</if>
+			<if test="status != null">
+				and a.joinStatus = #{status}
 			</if>
 		</where>
 	</select>

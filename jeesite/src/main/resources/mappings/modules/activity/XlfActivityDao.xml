@@ -50,7 +50,13 @@
 		left join xlf_user u
 		on a.activityCreateUser = u.id
 		<where>
-
+			<if test="createUser != null">
+				activityCreateUser = #{createUser}
+			</if>
+			
+			<if test="name != null">
+				and activityName like '%${name}%'
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">

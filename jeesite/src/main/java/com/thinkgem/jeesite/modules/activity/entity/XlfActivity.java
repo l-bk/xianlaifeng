@@ -214,5 +214,26 @@ public class XlfActivity extends DataEntity<XlfActivity> {
 		this.door = door;
 	}
 	
+//--------------------------------------
+	private Integer applySumNum;  //报名总人数
+	private Integer applyUncheck;	//报名未审核人数
+
+	public Integer getApplySumNum() {
+		return applySumNum;
+	}
+
+	public void setApplySumNum(Integer applySumNum) {
+		this.applySumNum = applySumNum;
+	}
+
+	public Integer getApplyUncheck() {
+		return applyUncheck;
+	}
+
+	public void setApplyUncheck(Integer applyUncheck) {
+		this.applyUncheck = applyUncheck;
+	}
+	
+	
 	
 }

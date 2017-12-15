@@ -60,15 +60,9 @@ public class XlfJoinController extends BaseController {
 	
 	@RequiresPermissions("join:xlfJoin:view")
 	@RequestMapping(value = {"list", ""})
-	public String list(XlfJoin xlfJoin, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String list(XlfJoin xlfJoin,HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<XlfJoin> page = xlfJoinService.findPage(new Page<XlfJoin>(request, response), xlfJoin); 
-		List<XlfJoin> joinList= page.getList();
-		for(XlfJoin join:joinList) {
-			join.setApplySumNum( xlfJoinService.selectCoumnApply(join));
-			XlfJoin newJoin=join;
-			newJoin.setStatus(0);
-			join.setApplyUncheck( xlfJoinService.selectCoumnApply(newJoin));
-		}
+		model.addAttribute("moduleId",xlfJoin.getModuleId());
 		model.addAttribute("moduleType",xlfJoin.getModuleType());
 		model.addAttribute("page", page);
 		return "modules/join/xlfJoinList";
@@ -102,17 +96,48 @@ public class XlfJoinController extends BaseController {
 
 	
 	@RequiresPermissions("join:xlfJoin:view")
-	@RequestMapping(value = {"moduleList", ""})
-	public String moduleList(XlfPartTimeJob xlfPartTimeJob, HttpServletRequest request, HttpServletResponse response, Model model,String methodId) {
+	@RequestMapping(value = {"moduleList"})
+	public String moduleList(XlfPartTimeJob xlfPartTimeJob,XlfActivity xlfActivity, HttpServletRequest request, HttpServletResponse response, Model model,String methodId) {
 		if("2".equals(methodId)) {
 			xlfPartTimeJob.setUserId(10001);
 			Page<XlfPartTimeJob> page = xlfPartTimeJobService.findPage(new Page<XlfPartTimeJob>(request, response), xlfPartTimeJob); 
+			List<XlfPartTimeJob> ptjList= page.getList();
+			for(XlfPartTimeJob ptj : ptjList) {
+				XlfJoin join = new XlfJoin();
+				join.setModuleId(Integer.valueOf(ptj.getJobId()));
+				join.setModuleType(2);
+				ptj.setApplySumNum(xlfJoinService.selectCoumnApply(join));
+				join.setStatus(0);
+				ptj.setApplyUncheck(xlfJoinService.selectCoumnApply(join));
+			}
+			page.setList(ptjList);
 			model.addAttribute("page", page);
+			return "modules/join/xlfPartTimeJobList";
 		}else  if("1".equals(methodId)){
-			Page<XlfActivity> page = xlfActivityService.findPage(new Page<XlfActivity>(request, response), new XlfActivity()); 
+			xlfActivity.setCreateUser(10001);
+			Page<XlfActivity> page = xlfActivityService.findPage(new Page<XlfActivity>(request, response),xlfActivity); 
+			List<XlfActivity> actList=page.getList();
+			for(XlfActivity act:actList) {
+				XlfJoin join = new XlfJoin();
+				join.setModuleId(Integer.valueOf(act.getActId()));
+				join.setModuleType(1);
+				act.setApplySumNum(xlfJoinService.selectCoumnApply(join));
+				join.setStatus(0);
+				act.setApplyUncheck(xlfJoinService.selectCoumnApply(join));
+			}
 			model.addAttribute("page", page);
 		}
-		return "modules/join/xlfPartTimeJobList";
+		return "modules/join/xlfActivityList";
 	}
 
+	@RequiresPermissions("join:xlfJoin:edit")
+	@RequestMapping(value = {"updateStatus"})
+	public String updateStatus(XlfJoin xlfJoin, RedirectAttributes redirectAttributes, Model model,String methodId) {
+		if(xlfJoin.getJoinId() != null) {
+			xlfJoin.setId(String.valueOf(xlfJoin.getJoinId()));
+			xlfJoinService.save(xlfJoin);
+			xlfJoin=xlfJoinService.get(String.valueOf(xlfJoin.getJoinId()));
+		}
+		return "redirect:"+Global.getAdminPath()+"/join/xlfJoin/?repage&moduleId="+xlfJoin.getModuleId()+"&moduleType="+xlfJoin.getModuleType();
+	}
 }

@@ -21,13 +21,13 @@
 		<li class="active"><a href="${ctx}/join/xlfJoin/moduleList?methodId=2">兼职信息列表</a></li>
 		<%-- <shiro:hasPermission name="ptj:xlfPartTimeJob:edit"><li><a href="${ctx}/ptj/xlfPartTimeJob/form">兼职信息添加</a></li></shiro:hasPermission> --%>
 	</ul>
-	<form:form id="searchForm"  modelAttribute="xlfPartTimeJob" action="${ctx}/join/xlfJoin/moduleList?methodId=0"  method="post" class="breadcrumb form-search">
+	<form:form id="searchForm"  modelAttribute="xlfPartTimeJob" action="${ctx}/join/xlfJoin/moduleList?methodId=2"  method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<label>&nbsp;兼职名称:</label>
 		<form:input path="jobName" maxlength="60"  htmlEscape="false"/>
 		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
-		&nbsp;<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+		&nbsp;<input id="btnCancel" class="btn btn-primary" type="button" value="返 回" onclick="history.go(-1)"/>
 	</form:form>
 	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
@@ -38,8 +38,9 @@
 				<th>发布机构</th>
 				<th>兼职类型</th>
 				<th>工作街道</th>
-				<th>发布时间</th>
 				<th>工作日期</th>
+				<th>报名总人数</th>
+				<th>待审核人数</th>
 				
 				<th>操作</th>
 			</tr>
@@ -52,8 +53,9 @@
 				<td>${xlfPartTimeJob.userCompany}</td>
 				<td>${xlfPartTimeJob.jobType}</td>
 				<td>${xlfPartTimeJob.workStreet}</td>
-				<td>${xlfPartTimeJob.releaseTime}</td>
 				<td>${xlfPartTimeJob.startWorkDate}</td>
+				<td>${xlfPartTimeJob.applySumNum}</td>
+				<td>${xlfPartTimeJob.applyUncheck}</td>
 				
 				<shiro:hasPermission name="join:xlfJoin:view"><td>
     				

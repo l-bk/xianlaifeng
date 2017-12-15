@@ -51,10 +51,10 @@
 	<div class="content">
 		<h3>欢迎登陆闲来峰开发平台</h3>
 		<div class="link-panel">
-			<a href="${ctx}/area/xlfArea/list">
+			<a href="${ctx}/ptj/xlfPartTimeJob/list">
 				<i class=" icon-book"></i><br/><span>兼职信息管理</span>
 			</a>
-			<a href="${ctx}/area/xlfArea/list">
+			<a href="${ctx}/activity/xlfActivity/list">
 				<i class=" icon-list"></i><br/><span>活动信息管理</span>
 			</a>
 			<a href="${ctx}/area/xlfArea/list">

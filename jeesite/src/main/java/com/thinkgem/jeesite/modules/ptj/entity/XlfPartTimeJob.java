@@ -41,10 +41,7 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 	private int areaId;
 	private int userId;
 	
-	private String userName;
-	private String userCompany;
-	private String jobType;
-	private String area;
+	
 	
 	
 	
@@ -58,37 +55,7 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 	
 	
 	
-	public String getUserCompany() {
-		return userCompany;
-	}
-
-	public void setUserCompany(String userCompany) {
-		this.userCompany = userCompany;
-	}
-
-	public String getArea() {
-		return area;
-	}
-
-	public void setArea(String area) {
-		this.area = area;
-	}
-
-	public String getJobType() {
-		return jobType;
-	}
-
-	public void setJobType(String jobType) {
-		this.jobType = jobType;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+	
 
 	public int getAreaId() {
 		return areaId;
@@ -261,5 +228,67 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
+//----------------------------------------------
+	private String userName;
+	private String userCompany;
+	private String jobType;
+	private String area;
+	private Integer applySumNum;  //报名总人数
+	private Integer applyUncheck;	//报名未审核人数
+
+
+
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserCompany() {
+		return userCompany;
+	}
+
+	public void setUserCompany(String userCompany) {
+		this.userCompany = userCompany;
+	}
+
+	public String getJobType() {
+		return jobType;
+	}
+
+	public void setJobType(String jobType) {
+		this.jobType = jobType;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+	public Integer getApplySumNum() {
+		return applySumNum;
+	}
+
+	public void setApplySumNum(Integer applySumNum) {
+		this.applySumNum = applySumNum;
+	}
+
+	public Integer getApplyUncheck() {
+		return applyUncheck;
+	}
+
+	public void setApplyUncheck(Integer applyUncheck) {
+		this.applyUncheck = applyUncheck;
+	}
+	
+	
+	
 	
 }

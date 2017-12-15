@@ -90,8 +90,7 @@ public class XlfJoin extends DataEntity<XlfJoin> {
 	private String userCompany; //机构
 	
 	
-	private Integer applySumNum;  //报名总人数
-	private Integer applyUncheck;	//报名未审核人数
+	
 
 	public String getPtjName() {
 		return ptjName;
@@ -125,22 +124,25 @@ public class XlfJoin extends DataEntity<XlfJoin> {
 		this.jobType = jobType;
 	}
 
-	public Integer getApplySumNum() {
-		return applySumNum;
+	private String actName;//活动名
+	private Integer actPerson;//活动人数
+
+	public String getActName() {
+		return actName;
 	}
 
-	public void setApplySumNum(Integer applySumNum) {
-		this.applySumNum = applySumNum;
+	public void setActName(String actName) {
+		this.actName = actName;
 	}
 
-	public Integer getApplyUncheck() {
-		return applyUncheck;
+	public Integer getActPerson() {
+		return actPerson;
 	}
 
-	public void setApplyUncheck(Integer applyUncheck) {
-		this.applyUncheck = applyUncheck;
+	public void setActPerson(Integer actPerson) {
+		this.actPerson = actPerson;
 	}
-	
+
 	
 	
 }

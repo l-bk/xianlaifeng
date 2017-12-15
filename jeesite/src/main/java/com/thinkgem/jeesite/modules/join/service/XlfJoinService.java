@@ -51,5 +51,5 @@ public class XlfJoinService extends CrudService<XlfJoinDao, XlfJoin> {
 	public int selectCoumnApply(XlfJoin xlfJoin) {
 		return xlfJoinDao.selectCoumnApply(xlfJoin);
 	}
-	
+
 }

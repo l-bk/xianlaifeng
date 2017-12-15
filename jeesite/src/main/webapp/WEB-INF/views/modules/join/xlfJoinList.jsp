@@ -19,19 +19,28 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li class="active"><a
-			href="${ctx}/join/xlfJoin/list?moduleType=${xlfJoin.moduleId}">报名信息列表</a></li>
+			href="${ctx}/join/xlfJoin/list?moduleType=${moduleType}&moduleId=${moduleId}">报名信息列表</a></li>
 		<%-- <shiro:hasPermission name="join:xlfJoin:edit"><li><a href="${ctx}/join/xlfJoin/form">报名信息添加</a></li></shiro:hasPermission> --%>
 	</ul>
 	<form:form id="searchForm" modelAttribute="xlfJoin"
-		action="${ctx}/join/xlfJoin/" method="post"
+		action="${ctx}/join/xlfJoin/list" method="post"
 		class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}" />
 		<input id="pageSize" name="pageSize" type="hidden"
 			value="${page.pageSize}" />
-		<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询" />
+		<label>报名状态</label>
+		<form:select path="status" >
+			<form:option  htmlEscape="false" value="" label="&nbsp;请选择 "/>
+			<form:option  htmlEscape="false" value="0" label="未审核 " />
+			<form:option  htmlEscape="false" value="1" label="审核通过"/>
+			<form:option  htmlEscape="false" value="2" label= " 取消  "/>
+		</form:select>
+		&nbsp;&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询" />
+		&nbsp;&nbsp;<input id="btnCancel" class="btn " type="button" value="返回"  onclick="history.go(-1)"/>
 		</ul>
 	</form:form>
 	<sys:message content="${message}" />
+	
 	<table id="contentTable"
 		class="table table-striped table-bordered table-condensed">
 		<thead>
@@ -39,14 +48,13 @@
 				<c:if test="${moduleType == '2'}">
 					<th>兼职名称</th>
 					<th>兼职类型</th>
-					<th>报名总人数</th>
-					<th>待审核人数</th>
 				</c:if>
 				<c:if test="${moduleType =='1'}">
 					<th>活动名称</th>
+					<th>活动人数</th>
 				</c:if>
-				<th>发布人</th>
-				<th>发布机构</th>
+				<th>报名人</th>
+				<th>报名状态</th>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -56,15 +64,22 @@
 					<c:if test="${xlfJoin.moduleType == '2'}">
 						<td>${xlfJoin.ptjName}</td>
 						<td>${xlfJoin.jobType}</td>
-						<td>${xlfJoin.applySumNum}</td>
-						<td>${xlfJoin.applyUncheck}</td>
+					</c:if>
+					<c:if test="${xlfJoin.moduleType == '1'}">
+						<td>${xlfJoin.actName}</td>
+						<td>${xlfJoin.actPerson}</td>
 					</c:if>
 					<td>${xlfJoin.userName}</td>
-					<td>${xlfJoin.userCompany}</td>
+					<td><c:if test="${xlfJoin.status == '0'}">
+						未审核
+					</c:if> <c:if test="${xlfJoin.status == '1'}">
+						审核通过
+					</c:if> <c:if test="${xlfJoin.status == '2'}">
+						取消
+					</c:if></td>
 					<shiro:hasPermission name="join:xlfJoin:edit">
-						<td><a href="${ctx}/join/xlfJoin/form?id=${xlfJoin.id}">修改</a>
-							<a href="${ctx}/join/xlfJoin/delete?id=${xlfJoin.id}"
-							onclick="return confirmx('确认要删除该报名信息吗？', this.href)">删除</a></td>
+						<td><a href="${ctx}/join/xlfJoin/updateStatus?joinId=${xlfJoin.joinId}&status=1">通过</a>
+							<a href="${ctx}/join/xlfJoin/updateStatus?joinId=${xlfJoin.joinId}&status=2">不通过</a></td>
 					</shiro:hasPermission>
 				</tr>
 			</c:forEach>
