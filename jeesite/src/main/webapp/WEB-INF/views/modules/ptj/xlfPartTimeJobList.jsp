@@ -52,8 +52,8 @@
 				<td>${xlfPartTimeJob.userCompany}</td>
 				<td>${xlfPartTimeJob.jobType}</td>
 				<td>${xlfPartTimeJob.workStreet}</td>
-				<td>${xlfPartTimeJob.releaseTime}</td>
-				<td>${xlfPartTimeJob.startWorkDate}</td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${xlfPartTimeJob.releaseTime}"/></td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"  value="${xlfPartTimeJob.startWorkDate}"/></td>
 				<td>
 					<c:if test="${xlfPartTimeJob.auditStatus == '0' }">
 						未审核

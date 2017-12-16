@@ -118,6 +118,9 @@
 					width="50px" height="40px"> <input type="button"
 					id="inserimage" value="选择文件" />
 				--%>
+				
+				<form:hidden id="pic" path="pic" htmlEscape="false" maxlength="255" class="input-xlarge" />
+				<sys:ckfinder input="pic" type="images" uploadPath="/photo" selectMultiple="false" maxWidth="100" maxHeight="100" />
 			</div>
 		</div>
 		<div class="control-group">
@@ -202,7 +205,7 @@
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});" />
 			</div>
 		</div>
-		<c:if test="${ xlfActivity.id != null }">
+		<c:if test="${ xlfActivity.actId != null }">
 			<div class="control-group">
 				<label class="control-label">审核状态：</label>
 				<div class="controls">

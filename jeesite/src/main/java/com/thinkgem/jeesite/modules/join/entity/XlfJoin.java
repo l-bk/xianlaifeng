@@ -88,10 +88,10 @@ public class XlfJoin extends DataEntity<XlfJoin> {
 	private String jobType; //兼职类型
 	private String userName; //用户名
 	private String userCompany; //机构
-	
-	
-	
-
+	private String userSex;//用户性别
+	private String userPhone;//用户电话
+	private String userRole;
+	private String schoolName;
 	public String getPtjName() {
 		return ptjName;
 	}
@@ -143,6 +143,39 @@ public class XlfJoin extends DataEntity<XlfJoin> {
 		this.actPerson = actPerson;
 	}
 
+	public String getUserSex() {
+		return userSex;
+	}
+
+	public void setUserSex(String userSex) {
+		this.userSex = userSex;
+	}
+
+	public String getUserPhone() {
+		return userPhone;
+	}
+
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
+	}
+
+	public String getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
+
+	public String getSchoolName() {
+		return schoolName;
+	}
+
+	public void setSchoolName(String schoolName) {
+		this.schoolName = schoolName;
+	}
+
+	
 	
 	
 }

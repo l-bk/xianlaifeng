@@ -43,7 +43,7 @@ public class XlfActivityService extends CrudService<XlfActivityDao, XlfActivity>
 	
 	@Transactional(readOnly = false)
 	public void save(XlfActivity xlfActivity) {
-		if(xlfActivity != null){
+		if(xlfActivity.getActId() != null){
 			xlfActivity.setId(String.valueOf(xlfActivity.getActId()));
 		}
 		xlfActivity.setCreateTime(new Date());

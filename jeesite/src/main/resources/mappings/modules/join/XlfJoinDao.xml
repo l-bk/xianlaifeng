@@ -27,7 +27,8 @@
 	</select>
 	
 	<select id="findList" resultType="XlfJoin">
-		SELECT u.user_name AS userName,u.user_company AS userCompany,
+		SELECT u.user_name AS userName,u.user_company AS userCompany, u.user_sex AS userSex,
+			u.user_phone AS userPhone,u.user_role AS userRole, s.school_name as schoolName,
 			<include refid="xlfJoinColumns"/>
 			<choose>
 				<when test="moduleType == 2">
@@ -39,7 +40,9 @@
 			</choose>
 		FROM xlf_join a
 		left join xlf_user u
-		on a.userId = u.id
+		on a.userId = u.id 
+		left join xlf_school s
+		on u.user_school_id = s.id
 		<choose>
 			<when test="moduleType == 2">
 				left join xlf_part_time_job p

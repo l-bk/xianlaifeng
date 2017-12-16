@@ -49,8 +49,8 @@
 				<td>${xlfActivity.name}</td>
 				<td>${xlfActivity.userName}</td>
 				<td>${xlfActivity.person}</td>
-				<td>${xlfActivity.startTime}</td>
-				<td>${xlfActivity.endTime}</td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${xlfActivity.startTime}"/></td>
+				<td><fmt:formatDate pattern="yyyy-mm-dd HH:mm:ss" value="${xlfActivity.endTime}"/></td>
 				<td>${xlfActivity.applySumNum}</td>
 				<td>${xlfActivity.applyUncheck}</td>
 				

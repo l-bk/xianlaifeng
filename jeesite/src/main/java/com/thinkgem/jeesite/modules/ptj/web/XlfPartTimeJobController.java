@@ -65,7 +65,6 @@ public class XlfPartTimeJobController extends BaseController {
 	@RequestMapping(value = {"list", ""})
 	public String list(XlfPartTimeJob xlfPartTimeJob, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<XlfPartTimeJob> page = xlfPartTimeJobService.findPage(new Page<XlfPartTimeJob>(request, response), xlfPartTimeJob); 
-		List<XlfPartTimeJob> list=xlfPartTimeJobService.findList(xlfPartTimeJob);
 		model.addAttribute("page", page);
 		return "modules/ptj/xlfPartTimeJobList";
 	}

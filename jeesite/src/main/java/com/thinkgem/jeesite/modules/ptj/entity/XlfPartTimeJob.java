@@ -53,10 +53,6 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		super(id);
 	}
 	
-	
-	
-	
-
 	public int getAreaId() {
 		return areaId;
 	}
@@ -157,23 +153,18 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		return timeType;
 	}
 	
-	@JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")  
 	public void setTimeType(String timeType) {
 		this.timeType = timeType;
 	}
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	public Date getReleaseTime() {
 		return releaseTime;
 	}
-	@JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")  
 	public void setReleaseTime(Date releaseTime) {
 		this.releaseTime = releaseTime;
 	}
-	@JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")  
 	public Date getEndWorkDate() {
 		return endWorkDate;
 	}
-	@JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")  
 	public void setEndWorkDate(Date endWorkDate) {
 		this.endWorkDate = endWorkDate;
 	}
@@ -194,7 +185,6 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		this.jobContent = jobContent;
 	}
 	
-	@Length(min=0, max=10, message="审核状态，0：未审核，1：审核通过 ，2：已取消长度必须介于 0 和 10 之间")
 	public String getAuditStatus() {
 		return auditStatus;
 	}

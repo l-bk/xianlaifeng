@@ -53,7 +53,7 @@
 				<td>${xlfPartTimeJob.userCompany}</td>
 				<td>${xlfPartTimeJob.jobType}</td>
 				<td>${xlfPartTimeJob.workStreet}</td>
-				<td>${xlfPartTimeJob.startWorkDate}</td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${xlfPartTimeJob.startWorkDate}"/></td>
 				<td>${xlfPartTimeJob.applySumNum}</td>
 				<td>${xlfPartTimeJob.applyUncheck}</td>
 				

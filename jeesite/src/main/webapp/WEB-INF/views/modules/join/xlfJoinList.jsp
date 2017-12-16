@@ -53,7 +53,12 @@
 					<th>活动名称</th>
 					<th>活动人数</th>
 				</c:if>
+				
 				<th>报名人</th>
+				<th>性别</th>
+				<th>所属单位</th>
+				<th>报名时间</th>
+				<th>电话号码</th>
 				<th>报名状态</th>
 				<th>操作</th>
 			</tr>
@@ -70,6 +75,27 @@
 						<td>${xlfJoin.actPerson}</td>
 					</c:if>
 					<td>${xlfJoin.userName}</td>
+					<td>
+						<c:if test="${xlfJoin.userSex == '0'}">
+							保密
+						</c:if>
+						<c:if test="${xlfJoin.userSex == '1'}">
+							男
+						</c:if>
+						<c:if test="${xlfJoin.userSex == '2'}">
+							女
+						</c:if>
+					</td>
+					<td>
+						<c:if test="${xlfJoin.userRole == '1'}">
+							${xlfJoin.userCompany}
+						</c:if>
+						<c:if test="${xlfJoin.userRole == '0'}">
+							${xlfJoin.schoolName}
+						</c:if>
+					</td>
+					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${xlfJoin.time}"/></td>
+					<td>${xlfJoin.userPhone}</td>
 					<td><c:if test="${xlfJoin.status == '0'}">
 						未审核
 					</c:if> <c:if test="${xlfJoin.status == '1'}">
