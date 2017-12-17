@@ -3,6 +3,8 @@
  */
 package com.thinkgem.jeesite.modules.join.dao;
 
+import java.util.List;
+
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
 import com.thinkgem.jeesite.modules.join.entity.XlfJoin;
@@ -15,4 +17,6 @@ import com.thinkgem.jeesite.modules.join.entity.XlfJoin;
 @MyBatisDao
 public interface XlfJoinDao extends CrudDao<XlfJoin> {
 	int selectCoumnApply(XlfJoin xlfJoin);
+	
+	List <XlfJoin> selectByUserAndModule(XlfJoin xlfJoin);
 }

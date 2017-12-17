@@ -52,4 +52,10 @@ public class XlfJoinService extends CrudService<XlfJoinDao, XlfJoin> {
 		return xlfJoinDao.selectCoumnApply(xlfJoin);
 	}
 
+	public Page<XlfJoin> selectByUserAndModule(Page<XlfJoin> page, XlfJoin entity) {
+		entity.setPage(page);
+		page.setList(xlfJoinDao.selectByUserAndModule(entity));
+		return page;
+	}
+	
 }

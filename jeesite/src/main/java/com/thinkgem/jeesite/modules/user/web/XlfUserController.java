@@ -80,4 +80,5 @@ public class XlfUserController extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/user/xlfUser/?repage";
 	}
 
+	
 }

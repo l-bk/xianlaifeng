@@ -24,10 +24,9 @@
 	<form:form id="searchForm" modelAttribute="xlfUser" action="${ctx}/user/xlfUser/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<ul class="ul-form">
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
-			<li class="clearfix"></li>
-		</ul>
+		<label>用户名称</label>
+		<form:input path="userName" maxlength="60" htmlEscape="false"/>
+		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
 	</form:form>
 	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
@@ -47,9 +46,37 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="xlfUser">
 			<tr>
-				<shiro:hasPermission name="user:xlfUser:edit"><td>
-    				<a href="${ctx}/user/xlfUser/form?id=${xlfUser.id}">修改</a>
-					<a href="${ctx}/user/xlfUser/delete?id=${xlfUser.id}" onclick="return confirmx('确认要删除该用户信息模块吗？', this.href)">删除</a>
+				<td>${xlfUser.userName}</td>
+				<td>${xlfUser.userAge}</td>
+				<td>
+					<c:if test="${xlfUser.userSex == '0'}">
+						保密
+					</c:if>
+					<c:if test="${xlfUser.userSex == '1'}">
+						男
+					</c:if>
+					<c:if test="${xlfUser.userSex == '2'}">
+						女
+					</c:if>
+				</td>
+				<td>${xlfUser.userHigh}</td>
+				<td>${xlfUser.userPhone}</td>
+				
+					<c:if test="${xlfUser.userRole == '0'}">
+						<td>学生</td>
+						<td>${xlfUser.schoolName}</td>
+						
+					</c:if>
+					<c:if test="${xlfUser.userRole  == '1'}">
+						<td>公司代理人</td>
+						<td>${xlfUser.userCompany}</td>
+					</c:if>
+					<td>${xlfUser.userDetails}</td>
+					<td></td>
+				<shiro:hasPermission name="join:xlfJoin:edit"><td>
+    				<a href="${ctx}/join/xlfJoin/joinByModule?user=${xlfUser.userId}&moduleType=1">所报名活动</a>
+    				<a href="${ctx}/join/xlfJoin/joinByModule?user=${xlfUser.userId}&moduleType=2">所报名兼职</a>
+    				
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

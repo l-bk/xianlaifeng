@@ -140,4 +140,19 @@ public class XlfJoinController extends BaseController {
 		}
 		return "redirect:"+Global.getAdminPath()+"/join/xlfJoin/?repage&moduleId="+xlfJoin.getModuleId()+"&moduleType="+xlfJoin.getModuleType();
 	}
+	
+	@RequiresPermissions("join:xlfJoin:edit")
+	@RequestMapping(value = {"joinByModule"})
+	public String joinByModule(XlfJoin xlfJoin,HttpServletRequest request, HttpServletResponse response,Model model) {
+		Page<XlfJoin> page = xlfJoinService.selectByUserAndModule(new Page<XlfJoin>(request, response), xlfJoin); 
+		model.addAttribute("page", page);
+		if(Integer.valueOf(2) == xlfJoin.getModuleType()){
+			return "modules/user/xlfPartTimeJobList";
+		}
+		if(Integer.valueOf(1) == xlfJoin.getModuleType()){
+			return "modules/user/xlfActivityList";
+		}
+		return null;
+		
+	}
 }

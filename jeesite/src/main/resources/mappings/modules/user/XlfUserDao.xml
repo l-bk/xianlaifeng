@@ -3,7 +3,7 @@
 <mapper namespace="com.thinkgem.jeesite.modules.user.dao.XlfUserDao">
     
 	<sql id="xlfUserColumns">
-		a.id AS "id",
+		a.id AS "userId",
 		a.user_name AS "userName",
 		a.user_sex AS "userSex",
 		a.user_role AS "userRole",
@@ -14,10 +14,13 @@
 		a.user_phone AS "userPhone",
 		a.user_details AS "userDetails",
 		a.user_img AS "userImg",
-		a.user_weigh AS "userWeigh"
+		a.user_weigh AS "userWeigh",
+		s.school_name AS schoolName
 	</sql>
 	
 	<sql id="xlfUserJoins">
+		left join xlf_school s
+		on a.user_school_id = s.id
 	</sql>
     
 	<select id="get" resultType="XlfUser">
@@ -34,7 +37,10 @@
 		FROM xlf_user a
 		<include refid="xlfUserJoins"/>
 		<where>
-			
+			a.id  != '10001'
+			<if test="userName != null">
+				a.user_name = #{userName}
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">

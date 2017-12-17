@@ -36,7 +36,7 @@
 			<form:option  htmlEscape="false" value="2" label= " 取消  "/>
 		</form:select>
 		&nbsp;&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询" />
-		&nbsp;&nbsp;<input id="btnCancel" class="btn " type="button" value="返回"  onclick="history.go(-1)"/>
+		&nbsp;&nbsp;<input id="btnCancel" class="btn btn-primary" type="button" value="返回"  onclick="history.go(-1)"/>
 		</ul>
 	</form:form>
 	<sys:message content="${message}" />

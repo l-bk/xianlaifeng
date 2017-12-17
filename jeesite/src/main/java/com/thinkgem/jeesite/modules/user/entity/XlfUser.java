@@ -27,12 +27,24 @@ public class XlfUser extends DataEntity<XlfUser> {
 	private String userImg;		// 用户头像
 	private String userWeigh;		// user_weigh
 	
+	private Integer userId;
+	
 	public XlfUser() {
 		super();
 	}
 
 	public XlfUser(String id){
 		super(id);
+	}
+	
+	
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	@Length(min=0, max=20, message="用户名称长度必须介于 0 和 20 之间")
@@ -133,5 +145,18 @@ public class XlfUser extends DataEntity<XlfUser> {
 	public void setUserWeigh(String userWeigh) {
 		this.userWeigh = userWeigh;
 	}
+
+//	---------------------------
+	private String schoolName;
+
+	public String getSchoolName() {
+		return schoolName;
+	}
+
+	public void setSchoolName(String schoolName) {
+		this.schoolName = schoolName;
+	}
+	
+	
 	
 }

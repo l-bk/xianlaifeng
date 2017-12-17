@@ -18,7 +18,7 @@ public class XlfJoin extends DataEntity<XlfJoin> {
 	
 	private static final long serialVersionUID = 1L;
 	private Integer joinId;
-	private Integer moduleType;		// 报名类型id 0:兼职 1:活动
+	private Integer moduleType;		// 报名类型id 2:兼职 1:活动
 	private Integer moduleId;		// 活动或兼职id
 	private Integer user;		// 用户id
 	private Date time;		// 报名时间
@@ -86,12 +86,19 @@ public class XlfJoin extends DataEntity<XlfJoin> {
 //--------------------------------------------
 	private String ptjName;  //兼职名称
 	private String jobType; //兼职类型
+	
+	
 	private String userName; //用户名
 	private String userCompany; //机构
 	private String userSex;//用户性别
 	private String userPhone;//用户电话
 	private String userRole;
 	private String schoolName;
+	
+	private String actName;//活动名
+	private Integer actPerson;//活动人数
+
+	
 	public String getPtjName() {
 		return ptjName;
 	}
@@ -124,9 +131,7 @@ public class XlfJoin extends DataEntity<XlfJoin> {
 		this.jobType = jobType;
 	}
 
-	private String actName;//活动名
-	private Integer actPerson;//活动人数
-
+	
 	public String getActName() {
 		return actName;
 	}
