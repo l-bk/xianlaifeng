@@ -198,7 +198,7 @@
 			<div class="controls">
 				<form:textarea path="jobContent" htmlEscape="false" maxlength="200" id="content" rows="4" stlye="width:95%"
 					class="input-xlarge " />
-			<sys:ckeditor replace="content" uploadPath="/uploads" />
+			<sys:ckeditor replace="content" uploadPath="/ptj" />
 			</div>
 		</div>
 

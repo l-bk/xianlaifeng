@@ -53,8 +53,11 @@ public class CKFinderConnectorServlet extends ConnectorServlet {
 			if (startupPath!=null){
 				String[] ss = startupPath.split(":");
 				if (ss.length==2){
-					String realPath = Global.getUserfilesBaseDir() + Global.USERFILES_BASE_URL
+					String srealPath = Global.getUserfilesBaseDir() + Global.USERFILES_BASE_URL
 							+ principal + "/" + ss[0] + ss[1];
+//					String str=ss[1];
+					String realPathList[] = ss[1].split("/");
+					String realPath =Global.getUserfilesBaseDir()+"/"+ss[0]+"/"+realPathList[1];
 					FileUtils.createDirectory(FileUtils.path(realPath));
 				}
 			}

@@ -120,7 +120,7 @@
 				--%>
 				
 				<form:hidden id="pic" path="pic" htmlEscape="false" maxlength="255" class="input-xlarge" />
-				<sys:ckfinder input="pic" type="images" uploadPath="/photo" selectMultiple="false" maxWidth="100" maxHeight="100" />
+				<sys:ckfinder input="pic" type="images" uploadPath="/activity" selectMultiple="false" maxWidth="100" maxHeight="100" />
 			</div>
 		</div>
 		<div class="control-group">
@@ -224,7 +224,7 @@
 				<form:textarea path="details" htmlEscape="false"
 					maxlength="200" id="content" rows="4" stlye="width:95%"
 					class="input-xlarge " />
-				<sys:ckeditor replace="content" uploadPath="/uploads" />
+				<sys:ckeditor replace="content" uploadPath="/activity" />
 			</div>
 		</div>
 

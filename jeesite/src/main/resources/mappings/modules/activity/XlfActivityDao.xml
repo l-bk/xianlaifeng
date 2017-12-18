@@ -28,15 +28,20 @@
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		activityName,activityDetails,activityIfSchool,activityPic,activityProvince,
-		activityCity,activityDistrict,activityLocation,activityLatitude,
-		activityLongitude,activityPerson,activityStartTime,activityEndTime,
-		activityCreateTime,activityCreateUser,activityStatus,activityDoor
+		a.activityName AS name ,a.activityDetails AS details,
+		a.activityIfSchool AS ifSchool,a.activityPic AS pic,
+		a.activityProvince AS province,
+		a.activityCity AS city,a.activityDistrict AS district,
+		a.activityLocation AS location,a.activityLatitude AS latitude,
+		a.activityLongitude AS longitude,a.activityPerson AS person,
+		a.activityStartTime AS startTime, a.activityEndTime AS endTime,
+		a.activityCreateTime AS createTime ,a.activityCreateUser AS createUser,
+		a.activityStatus AS status,a.activityDoor AS door
 	</sql>
 
 	<select id="get"
 		resultType="com.thinkgem.jeesite.modules.activity.entity.XlfActivity">
-		SELECT a.id,
+		SELECT a.id as actId,
 		<include refid="Base_Column_List" />
 		FROM xlf_activity a
 		WHERE a.id = #{actId}
