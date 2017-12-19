@@ -4,22 +4,7 @@
 <head>
 <title>活动信息管理管理</title>
 <meta name="decorator" content="default" />
-<link type="text/css" rel="stylesheet"
-	href="/static/kindeditor/themes/simple/simple.css" />
-<link type="text/css" rel="Stylesheet"
-	href="/static/kindeditor/themes/default/default.css" />
-<link rel="stylesheet"
-	href="../../../../../css/js/legao-date/css/jquery-ui.css">
-<link rel="stylesheet"
-	href="../../../../../css/js/legao-date/css/date-range-picker.css">
-<script src="../../../../../css/js/legao-date/js/jquery-ui.min.js"></script>
-<script src="../../../../../css/js/legao-date/js/date-range-picker.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="/static/kindeditor/kindeditor-all-min.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="/static/kindeditor/lang/zh-CN.js"></script>
-<script src="../../../../../group/applyRefund/js/droparea.js"
-	type="text/javascript" charset="utf-8"></script>
+
 <script type="text/javascript">
 	$(document).ready(
 			function() {
@@ -46,32 +31,6 @@
 									}
 								});
 			});
-	KindEditor.ready(function(K) {
-		var editor2 = K.editor({
-			allowFileManager : true,
-			cssPath : '/static/kindeditor/plugins/code/prettify.css',
-			uploadJson : '/static/kindeditor/jsp/upload_json.jsp',
-			fileManagerJson : '/static/kindeditor/jsp/file_manager_json.jsp',
-			allowFileManager : true,
-		});
-
-		K('#inserimage').click(
-				function() {
-					editor2.loadPlugin('image', function() {
-						editor2.plugin.imageDialog({
-							imageUrl : K('#url1').val(),
-							clickFn : function(url, title, width, height,
-									border, align) {
-								$('#smallimage').attr("src", url);
-								$("#smallimage").show();
-								$('#matchLogo').val(url);
-								/* alert(url); */
-								editor2.hideDialog();
-							}
-						});
-					});
-				});
-	});
 </script>
 </head>
 <body>

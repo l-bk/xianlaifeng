@@ -34,6 +34,9 @@ public class XlfPartTimeJobService extends CrudService<XlfPartTimeJobDao, XlfPar
 	
 	@Autowired
 	private XlfAreaDao areaDao;
+	
+	@Autowired 
+	private XlfPartTimeJobDao tpjDao;
 
 	public XlfPartTimeJob get(String id) {
 		return super.get(id);
@@ -92,21 +95,14 @@ public class XlfPartTimeJobService extends CrudService<XlfPartTimeJobDao, XlfPar
 	           }
 
 	        }
-		if(StringUtils.isNotBlank(xlfPartTimeJob.getWorkStreet())) {
-			String address=xlfPartTimeJob.getWorkStreet();
-			String province=address.substring(0,address.indexOf("省")+1);
-			String city=address.substring(address.indexOf("省")+1,address.indexOf("市")+1);
-			String district=address.substring(address.indexOf("市")+1,address.indexOf("区")+1);
-			String street=address.substring(address.indexOf("区")+1);
 			XlfArea area= new XlfArea();
-			area.setProvince(province);
-			area.setCity(city);
-			area.setDistrict(district);
+			area.setProvince(xlfPartTimeJob.getWorkProvince());
+			area.setCity(xlfPartTimeJob.getWorkCity());
+			area.setDistrict(xlfPartTimeJob.getWorkDistrict());
 			area = areaDao.selectByArea(area);
 			if(area != null) {
 				xlfPartTimeJob.setAreaId(area.getAreaId());
 			}
-		}
 		xlfPartTimeJob.setUserId(10001);
 		super.save(xlfPartTimeJob);
 	}
@@ -114,6 +110,12 @@ public class XlfPartTimeJobService extends CrudService<XlfPartTimeJobDao, XlfPar
 	@Transactional(readOnly = false)
 	public void delete(XlfPartTimeJob xlfPartTimeJob) {
 		super.delete(xlfPartTimeJob);
+	}
+	
+	
+	@Transactional(readOnly = false)
+	public int updateStatus(XlfPartTimeJob xlfPartTimeJob) {
+		return tpjDao. updateStatus( xlfPartTimeJob);
 	}
 	
 }

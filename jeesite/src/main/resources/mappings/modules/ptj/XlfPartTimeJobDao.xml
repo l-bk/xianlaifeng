@@ -29,6 +29,9 @@
 		<result column="work_time" property="workTime" jdbcType="VARCHAR" />
 		<result column="latitude" property="latitude" jdbcType="DOUBLE" />
 		<result column="longitude" property="longitude" jdbcType="DOUBLE" />
+		<result column="work_province" property="workProvince" jdbcType="VARCHAR" />
+		<result column="work_city" property="workCity" jdbcType="VARCHAR" />
+		<result column="work_district" property="workDistrict" jdbcType="VARCHAR" />
 	</resultMap>
 
 
@@ -145,6 +148,15 @@
 			<if test="latitude != null">
 				latitude,
 			</if>
+			<if test="workProvince != null">
+				work_province,
+			</if>
+			<if test="workCity != null">
+				work_city,
+			</if>
+			<if test="workDistrict != null">
+				work_district,
+			</if>
 		</trim>
 		<trim prefix="values(" suffix=")" suffixOverrides=",">
 			<if test="jobName != null">
@@ -211,6 +223,15 @@
 
 			<if test="latitude != null">
 				#{latitude},
+			</if>
+			<if test="workProvince != null">
+				#{workProvince},
+			</if>
+			<if test="workCity != null">
+				#{workCity},
+			</if>
+			<if test="workDistrict != null">
+				#{workDistrict},
 			</if>
 		</trim>
 	</insert>
@@ -283,12 +304,32 @@
 			<if test="latitude != null">
 				latitude = #{latitude},
 			</if>
+			<if test="workProvince != null">
+				work_province = #{workProvince},
+			</if>
+			<if test="workCity != null">
+				work_city = #{workCity},
+			</if>
+			<if test="workDistrict != null">
+				work_district = #{workDistrict},
+			</if>
+			
 		</set>
 		WHERE job_id = #{jobId}
 	</update>
 
 	<update id="delete">
 		delete from xlf_part_time_job
+		WHERE job_id = #{jobId}
+	</update>
+
+	<update id ="updateStatus" parameterType="com.thinkgem.jeesite.modules.ptj.entity.XlfPartTimeJob"	>
+		update xlf_part_time_job a
+		<set>
+			<if test="auditStatus !=null">
+				audit_status=#{auditStatus},
+			</if>
+		</set>
 		WHERE job_id = #{jobId}
 	</update>
 

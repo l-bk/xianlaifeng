@@ -95,4 +95,31 @@ public class XlfActivityController extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/activity/xlfActivity/?repage";
 	}
 
+	@RequiresPermissions("activity:xlfActivity:edit")
+	@RequestMapping(value = "updateStatus")
+	public String updateStatus(XlfActivity xlfActivity, Model model, RedirectAttributes redirectAttributes) {
+		int result=xlfActivityService.updateStatus(xlfActivity);
+		if("1".equals(xlfActivity.getStatus())) {
+			if(result == 1 ) {
+				addMessage(redirectAttributes, xlfActivity.getName()+"审核通过操作成功");
+			}else {
+				addMessage(redirectAttributes, xlfActivity.getName()+"审核通过操作不成功");
+			}
+		}else  if("2".equals(xlfActivity.getStatus())){
+			if(result == 1 ) {
+				addMessage(redirectAttributes, xlfActivity.getName()+"审核不通过操作成功");
+			}else {
+				addMessage(redirectAttributes, xlfActivity.getName()+"审核不通过操作不成功");
+			}
+		}else if ("0".equals(xlfActivity.getStatus())) {
+			if(result == 1 ) {
+				addMessage(redirectAttributes, xlfActivity.getName()+"重新审核操作成功");
+			}else {
+				addMessage(redirectAttributes, xlfActivity.getName()+"重新审核操作不成功");
+			}
+		}
+		return "redirect:"+Global.getAdminPath()+"/activity/xlfActivity/?repage";
+	}
+	
+	
 }

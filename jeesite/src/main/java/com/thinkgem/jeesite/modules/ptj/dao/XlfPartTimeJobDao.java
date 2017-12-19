@@ -14,5 +14,5 @@ import com.thinkgem.jeesite.modules.ptj.entity.XlfPartTimeJob;
  */
 @MyBatisDao
 public interface XlfPartTimeJobDao extends CrudDao<XlfPartTimeJob> {
-	
+	int updateStatus(XlfPartTimeJob xlfPartTimeJob);
 }

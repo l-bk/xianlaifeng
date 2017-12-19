@@ -51,7 +51,7 @@
 				<td>${xlfPartTimeJob.userName}</td>
 				<td>${xlfPartTimeJob.userCompany}</td>
 				<td>${xlfPartTimeJob.jobType}</td>
-				<td>${xlfPartTimeJob.workStreet}</td>
+				<td>${xlfPartTimeJob.address}</td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${xlfPartTimeJob.releaseTime}"/></td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"  value="${xlfPartTimeJob.startWorkDate}"/></td>
 				<td>
@@ -66,8 +66,23 @@
 					</c:if>
 				</td>
 				<shiro:hasPermission name="ptj:xlfPartTimeJob:edit"><td>
+				<c:if test="${xlfPartTimeJob.userId == '10001'}">
     				<a href="${ctx}/ptj/xlfPartTimeJob/form?jobId=${xlfPartTimeJob.jobId}">修改</a>
 					<a href="${ctx}/ptj/xlfPartTimeJob/delete?jobId=${xlfPartTimeJob.jobId}" onclick="return confirmx('确认要删除该兼职信息吗？', this.href)">删除</a>
+					<a href="${ctx}/ptj/xlfPartTimeJob/updateStatus?jobId=${xlfPartTimeJob.jobId}&auditStatus=0&jobName=${xlfPartTimeJob.jobName}">取消</a>
+				</c:if>
+				<c:if test="${xlfPartTimeJob.userId != '10001'}">
+					<c:if test="${xlfPartTimeJob.auditStatus == '0' }">
+							<a href="${ctx}/ptj/xlfPartTimeJob/updateStatus?jobId=${xlfPartTimeJob.jobId}&auditStatus=1&jobName=${xlfPartTimeJob.jobName}">审核通过</a>
+							<a href="${ctx}/ptj/xlfPartTimeJob/updateStatus?jobId=${xlfPartTimeJob.jobId}&auditStatus=2&jobName=${xlfPartTimeJob.jobName}">审核不通过</a>
+						</c:if>
+						<c:if test="${xlfPartTimeJob.auditStatus  == '1'}">
+							<a href="${ctx}/ptj/xlfPartTimeJob/updateStatus?jobId=${xlfPartTimeJob.jobId}&auditStatus=2&jobName=${xlfPartTimeJob.jobName}">取消</a>
+						</c:if>
+						<c:if test="${xlfPartTimeJob.auditStatus  == '2' }">
+							<a href="${ctx}/ptj/xlfPartTimeJob/updateStatus?jobId=${xlfPartTimeJob.jobId}&auditStatus=0&jobName=${xlfPartTimeJob.jobName}"></a>
+						</c:if>
+				</c:if>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

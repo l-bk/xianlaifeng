@@ -32,6 +32,7 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+			<th><id></id>
 				<th>活动名称</th>
 				<th>创建人</th>
 				<th>活动位置</th>
@@ -45,6 +46,7 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="xlfActivity">
 			<tr>
+				<td>${xlfActivity.createUser}</td>
 				<td>${xlfActivity.name}</td>
 				<td>${xlfActivity.userName}</td>
 				<td>${xlfActivity.address}</td>
@@ -63,8 +65,23 @@
 					</c:if>
 				</td>
 				<shiro:hasPermission name="activity:xlfActivity:edit"><td>
-    				<a href="${ctx}/activity/xlfActivity/form?actId=${xlfActivity.actId}">修改</a>
-					<a href="${ctx}/activity/xlfActivity/delete?actId=${xlfActivity.actId}" onclick="return confirmx('确认要删除该活动信息管理吗？', this.href)">删除</a>
+					<c:if test="${xlfActivity.createUser == '10001'}">
+	    				<a href="${ctx}/activity/xlfActivity/form?actId=${xlfActivity.actId}">修改</a>
+						<a href="${ctx}/activity/xlfActivity/delete?actId=${xlfActivity.actId}" onclick="return confirmx('确认要删除该活动信息管理吗？', this.href)">删除</a>
+						<a href="${ctx}/activity/xlfActivity/updateStatus?actId=${xlfActivity.actId}&status=2&name=${xlfActivity.name}">取消</a>
+					</c:if>
+					<c:if test="${xlfActivity.createUser != '10001'}">
+						<c:if test="${xlfActivity.status == '0' }">
+							<a href="${ctx}/activity/xlfActivity/updateStatus?actId=${xlfActivity.actId}&status=1&name=${xlfActivity.name}">审核通过</a>
+							<a href="${ctx}/activity/xlfActivity/updateStatus?actId=${xlfActivity.actId}&status=2&name=${xlfActivity.name}">审核不通过</a>
+						</c:if>
+						<c:if test="${xlfActivity.status == '1'}">
+							<a href="${ctx}/activity/xlfActivity/updateStatus?actId=${xlfActivity.actId}&status=2&name=${xlfActivity.name}">取消</a>
+						</c:if>
+						<c:if test="${xlfActivity.status == '2' }">
+							<a href="${ctx}/activity/xlfActivity/updateStatus?actId=${xlfActivity.actId}&status=0&name=${xlfActivity.name}"></a>
+						</c:if>
+					</c:if>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

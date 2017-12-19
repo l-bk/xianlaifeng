@@ -268,4 +268,14 @@
 		where id = #{actId}
 	</select>
 
+	<update id ="updateStatus" parameterType="com.thinkgem.jeesite.modules.activity.entity.XlfActivity">
+		update xlf_activity a
+		<set>
+			<if test="status != null">
+				activityStatus = #{status},
+			</if>
+		</set>
+		where a.id = #{actId}
+	</update>
+
 </mapper>

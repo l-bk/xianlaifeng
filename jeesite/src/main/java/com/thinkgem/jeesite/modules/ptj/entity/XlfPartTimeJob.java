@@ -41,7 +41,11 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 	private int areaId;
 	private int userId;
 	
+	private String workProvince;
+	private String workCity;
+	private String workDistrict;
 	
+	private String address;
 	
 	
 	
@@ -53,6 +57,40 @@ public class XlfPartTimeJob extends DataEntity<XlfPartTimeJob> {
 		super(id);
 	}
 	
+	
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getWorkProvince() {
+		return workProvince;
+	}
+
+	public void setWorkProvince(String workProvince) {
+		this.workProvince = workProvince;
+	}
+
+	public String getWorkCity() {
+		return workCity;
+	}
+
+	public void setWorkCity(String workCity) {
+		this.workCity = workCity;
+	}
+
+	public String getWorkDistrict() {
+		return workDistrict;
+	}
+
+	public void setWorkDistrict(String workDistrict) {
+		this.workDistrict = workDistrict;
+	}
+
 	public int getAreaId() {
 		return areaId;
 	}

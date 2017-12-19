@@ -65,6 +65,12 @@ public class XlfPartTimeJobController extends BaseController {
 	@RequestMapping(value = {"list", ""})
 	public String list(XlfPartTimeJob xlfPartTimeJob, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<XlfPartTimeJob> page = xlfPartTimeJobService.findPage(new Page<XlfPartTimeJob>(request, response), xlfPartTimeJob); 
+		List<XlfPartTimeJob> list=page.getList();
+		for(XlfPartTimeJob ptj:list) {
+			/*ptj.setAddress(ptj.getWorkProvince() == null?"":ptj.getWorkProvince() + ptj.getWorkCity() == null?"":ptj.getWorkCity()
+					+ptj.getWorkDistrict() == null ?"":ptj.getWorkDistrict() + ptj.getWorkStreet() == null?"":ptj.getWorkStreet());*/
+		}
+		page.setList(list);
 		model.addAttribute("page", page);
 		return "modules/ptj/xlfPartTimeJobList";
 	}
@@ -104,4 +110,30 @@ public class XlfPartTimeJobController extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/ptj/xlfPartTimeJob/?repage";
 	}
 
+	
+	@RequiresPermissions("ptj:xlfPartTimeJob:edit")
+	@RequestMapping(value = "updateStatus")
+	public String updateStatus(XlfPartTimeJob xlfPartTimeJob, Model model, RedirectAttributes redirectAttributes) {
+		int result=xlfPartTimeJobService.updateStatus(xlfPartTimeJob);
+		if("1".equals(xlfPartTimeJob.getAuditStatus())) {
+			if(result == 1 ) {
+				addMessage(redirectAttributes,xlfPartTimeJob.getJobName()+"审核通过操作成功");
+			}else {
+				addMessage(redirectAttributes, xlfPartTimeJob.getJobName()+"审核通过操作不成功");
+			}
+		}else  if("2".equals(xlfPartTimeJob.getAuditStatus())){
+			if(result == 1 ) {
+				addMessage(redirectAttributes, xlfPartTimeJob.getJobName()+"审核不通过操作成功");
+			}else {
+				addMessage(redirectAttributes, xlfPartTimeJob.getJobName()+"审核不通过操作不成功");
+			}
+		}else if ("0".equals(xlfPartTimeJob.getAuditStatus())) {
+			if(result == 1 ) {
+				addMessage(redirectAttributes, xlfPartTimeJob.getJobName()+"重新审核操作成功");
+			}else {
+				addMessage(redirectAttributes, xlfPartTimeJob.getJobName()+"重新审核操作不成功");
+			}
+		}
+		return "redirect:"+Global.getAdminPath()+"/ptj/xlfPartTimeJob/?repage";
+	}
 }

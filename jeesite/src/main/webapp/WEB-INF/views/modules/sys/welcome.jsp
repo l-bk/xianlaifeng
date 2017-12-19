@@ -57,9 +57,9 @@
 			<a href="${ctx}/activity/xlfActivity/list">
 				<i class=" icon-list"></i><br/><span>活动信息管理</span>
 			</a>
-			<a href="${ctx}/area/xlfArea/list">
-				<i class="icon-file"></i><br/><span>报名信息管理</span>
-			</a>
+			<%-- <a href="${ctx}/area/xlfArea/list">
+				<i class="icon-file"></i><br/><span>用户信息管理</span>
+			</a> --%>
 			<a href="${ctx}/area/xlfArea/list">
 				<i class="icon-compass"></i><br/><span>区域信息管理</span>
 			</a>

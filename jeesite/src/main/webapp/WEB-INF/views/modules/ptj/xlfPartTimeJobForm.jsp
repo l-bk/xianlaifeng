@@ -150,13 +150,36 @@
 				</form:select>
 			</div>
 		</div> --%>
-
+		<div class="control-group">
+			<label class="control-label">工作省：</label>
+			<div class="controls">
+				<form:input path="workProvince" htmlEscape="false" maxlength="256"
+					class="input-xlarge required" />
+					<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">工作市：</label>
+			<div class="controls">
+				<form:input path="workCity" htmlEscape="false" maxlength="256"
+					class="input-xlarge required" />
+					<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">工作区：</label>
+			<div class="controls">
+				<form:input path="workDistrict" htmlEscape="false" maxlength="256"
+					class="input-xlarge required" />
+					<span class="help-inline"><font color="red">*</font></span>
+			</div>
+		</div>
 		<div class="control-group">
 			<label class="control-label">工作街道：</label>
 			<div class="controls">
 				<form:input path="workStreet" htmlEscape="false" maxlength="256"
 					class="input-xlarge required" />
-					<span class="help-inline"><font color="red">*</font> <font color=""gray>例:广东省广州市天河区xx街道</font></span>
+					<span class="help-inline"><font color="red">*</font> <!-- <font color=""gray>例:广东省广州市天河区xx街道</font> --></span>
 			</div>
 		</div>
 

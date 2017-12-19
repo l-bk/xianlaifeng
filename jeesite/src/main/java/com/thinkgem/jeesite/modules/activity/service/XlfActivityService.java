@@ -46,7 +46,12 @@ public class XlfActivityService extends CrudService<XlfActivityDao, XlfActivity>
 		if(xlfActivity.getActId() != null){//修改
 			xlfActivity.setId(String.valueOf(xlfActivity.getActId()));
 			XlfActivity act=activityDao.get(String.valueOf(xlfActivity.getActId()));
+			
 		}
+//		else {
+//			if()
+//		}
+//		
 		xlfActivity.setCreateTime(new Date());
 		xlfActivity.setStatus("1");
 		xlfActivity.setCreateUser(10001);
@@ -64,6 +69,11 @@ public class XlfActivityService extends CrudService<XlfActivityDao, XlfActivity>
 	
 	public XlfActivity selectByActId(Integer id) {
 		return activityDao.selectByActId(id);
+	}
+	
+	@Transactional(readOnly=false)
+	public int updateStatus(XlfActivity xlfActivity) {
+		return activityDao.updateStatus( xlfActivity);
 	}
 	
 }
