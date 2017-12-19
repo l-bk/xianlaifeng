@@ -154,7 +154,7 @@
 				#{ifSchool},
 			</if>
 			<if test="pic != null">
-				#{pic},
+				 CONCAT('https://www.xianlaifeng.com',#{pic}),
 			</if>
 			<if test="province != null">
 				#{province},

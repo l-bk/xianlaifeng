@@ -47,11 +47,14 @@ public class XlfActivityService extends CrudService<XlfActivityDao, XlfActivity>
 			xlfActivity.setId(String.valueOf(xlfActivity.getActId()));
 			XlfActivity act=activityDao.get(String.valueOf(xlfActivity.getActId()));
 			
+			//给图片拼接完整路径。添加直接sql拼接。修改判断是否有域名存在。
+			if(StringUtils.isNotBlank(xlfActivity.getPic())){
+				if(!xlfActivity.getPic().contains("https://www.xianlaifeng.com")){
+					xlfActivity.setPic("https://www.xianlaifeng.com"+xlfActivity.getPic());
+				}
+			}
 		}
-//		else {
-//			if()
-//		}
-//		
+		
 		xlfActivity.setCreateTime(new Date());
 		xlfActivity.setStatus("1");
 		xlfActivity.setCreateUser(10001);
