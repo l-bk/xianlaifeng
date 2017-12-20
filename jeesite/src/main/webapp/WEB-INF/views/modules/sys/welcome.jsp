@@ -49,7 +49,7 @@
 <body>
 	
 	<div class="content">
-		<h3>欢迎登陆闲来峰开发平台</h3>
+		<h3>欢迎登陆闲来蜂开发平台</h3>
 		<div class="link-panel">
 			<a href="${ctx}/ptj/xlfPartTimeJob/list">
 				<i class=" icon-book"></i><br/><span>兼职信息管理</span>

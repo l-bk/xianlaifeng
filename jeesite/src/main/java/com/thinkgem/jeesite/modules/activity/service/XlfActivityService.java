@@ -28,55 +28,68 @@ public class XlfActivityService extends CrudService<XlfActivityDao, XlfActivity>
 
 	@Autowired
 	private XlfActivityDao activityDao;
-	
+
 	public XlfActivity get(String id) {
 		return super.get(id);
 	}
-	
+
 	public List<XlfActivity> findList(XlfActivity xlfActivity) {
 		return super.findList(xlfActivity);
 	}
-	
+
 	public Page<XlfActivity> findPage(Page<XlfActivity> page, XlfActivity xlfActivity) {
 		return super.findPage(page, xlfActivity);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void save(XlfActivity xlfActivity) {
 		if(xlfActivity.getActId() != null){//修改
 			xlfActivity.setId(String.valueOf(xlfActivity.getActId()));
 			XlfActivity act=activityDao.get(String.valueOf(xlfActivity.getActId()));
-			
+
 			//给图片拼接完整路径。添加直接sql拼接。修改判断是否有域名存在。
 			if(StringUtils.isNotBlank(xlfActivity.getPic())){
 				if(!xlfActivity.getPic().contains("https://www.xianlaifeng.com")){
 					xlfActivity.setPic("https://www.xianlaifeng.com"+xlfActivity.getPic());
 				}
 			}
+			if(StringUtils.isNotBlank(xlfActivity.getDetails())) {
+				String details=Encodes.unescapeHtml(xlfActivity.getDetails());
+				if(details.contains("<img")) {
+					details=details.replace("src=\"/", "src=\\\"https://www.xianlaifeng.com/");
+					xlfActivity.setDetails(details);
+				}
+			}
+			
+		}else {
+			//给富文本中的图片拼完整域名
+			if(StringUtils.isNotBlank(xlfActivity.getDetails())) {
+				String details=Encodes.unescapeHtml(xlfActivity.getDetails());
+				if(details.contains("<img") && !details.contains("https://www.xianlaifeng.com") ) {
+					details=details.replace("src=\"","src=\"https://www.xianlaifeng.com");
+					xlfActivity.setDetails(details);
+				}
+			}
 		}
-		
 		xlfActivity.setCreateTime(new Date());
 		xlfActivity.setStatus("1");
 		xlfActivity.setCreateUser(10001);
-		if(StringUtils.isNotBlank(xlfActivity.getDetails())) {
-			xlfActivity.setDetails(Encodes.unescapeHtml(xlfActivity.getDetails()));
-		}
 		super.save(xlfActivity);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void delete(XlfActivity xlfActivity) {
 		super.delete(xlfActivity);
 	}
-	
-	
+
+
 	public XlfActivity selectByActId(Integer id) {
 		return activityDao.selectByActId(id);
 	}
-	
+
 	@Transactional(readOnly=false)
 	public int updateStatus(XlfActivity xlfActivity) {
 		return activityDao.updateStatus( xlfActivity);
 	}
-	
+
 }
